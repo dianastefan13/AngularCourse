@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MyComponent } from './components/my-component/my-component.component';
@@ -13,6 +14,10 @@ import { TestDirectiveComponent } from './components/test-directive/test-directi
 import { MyStructuralDirectiveDirective } from './directives/my-structural-directive.directive';
 import { ParentComponentComponent } from './components/parent-component/parent-component.component';
 import { ChildComponentComponent } from './components/child-component/child-component.component';
+import { HeroComponent } from './components/hero/hero.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TestPipesComponent } from './components/test-pipes/test-pipes.component';
+import { MyPipePipe } from './pipes/my-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -25,12 +30,23 @@ import { ChildComponentComponent } from './components/child-component/child-comp
     TestDirectiveComponent,
     MyStructuralDirectiveDirective,
     ParentComponentComponent,
-    ChildComponentComponent
+    ChildComponentComponent,
+    HeroComponent,
+    PageNotFoundComponent,
+    TestPipesComponent,
+    MyPipePipe
     
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([
+      {path: "hero/:id", component: HeroComponent},
+      {path: "heroes", component: HeroListComponent, data: {title : 'Heroes'}},
+      {path: "", component: MyComponent, pathMatch : "full"},
+      {path: "**", component: PageNotFoundComponent}
+    ], {useHash: true})
+
   ],
   providers: [MyService],
   bootstrap: [AppComponent]

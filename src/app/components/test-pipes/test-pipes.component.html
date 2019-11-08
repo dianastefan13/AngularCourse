@@ -1,0 +1,24 @@
+<p>test-pipes works!</p>
+<div>{{hero?.name}}</div>
+<div>{{hero?.id}}</div>
+
+<button (click)="increaseId()">Increase hero id</button>
+<br><br><br>
+Test pipes
+
+<div>{{birthday}}</div>
+<div>{{birthday | date}}</div>
+<div>{{hero | json}}</div>
+<div>{{promise | async}}</div>
+<div>{{promise | async | json}}</div>
+
+<br><br><br>
+
+My Pipe Value
+<!-- <div>{{myValue | myPipe}}</div> -->
+
+
+<br><br><br>
+Hero id pipe
+
+<div (mouseover)="doNothing()">{{hero | myPipe}}</div>

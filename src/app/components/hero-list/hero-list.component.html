@@ -1,2 +1,7 @@
 <p>hero-list works!</p>
-<div *ngFor="let hero of heroes">{{hero.name + ' ' + hero.id}}</div>
+<div *ngFor="let hero of heroes">
+    <div>
+        <span>{{hero.name}}</span>
+        <button (click)="navigateToHero(hero.id)">Click on my hero</button>
+    </div>
+</div>
