@@ -1,0 +1,65 @@
+<!-- <p *ngIf="isShown()">Value is shown</p>
+
+<div style="background-color: orange; height: 100px; width: 100px;"></div>
+
+<div [ngStyle]="myStyles"></div>
+
+<div *ngFor="let testEnum of myTestEnum">
+    <div [ngSwitch]="testEnum">
+        <p *ngSwitchCase="1">My value is one</p>
+        <p *ngSwitchCase="2">My value is two</p>
+        <p *ngSwitchDefault> My value does not matter</p>
+    </div>
+</div>
+
+<pre ngNonBindable>{{someTextNew}}</pre>
+
+<table>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td [attr.colspan]="colspanValue">7</td>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td [colSpan]="3">7</td>
+    </tr>
+</table>
+
+<p (click)="doSomething($event)" style="cursor: pointer;">This is my P elements</p> -->
+
+<input type="text" [(ngModel)]="inputValue"/>
+<p>{{inputValue}}</p>
+
+<div [class]="classesArray">My test div</div>
+
+<div  [ngClass]="{class1 : shown, class2: shown}">My NG div</div>
+
+<div [ngClass]="classesArray">My other div</div>
+
+<div class="class1" [ngClass]="objectClass">My other div from objects</div>
+
+
+<p style="color: red;">My text style</p>
+<p [style.color]="'red'">My text style from property</p>
+<p [style.font-size.px]="fieldToDisplaySize ? 30 : 20">My text style from property with size</p>
+
+<div [ngStyle]="myStyles"></div>
+
+<p>Pause</p>
+
+<div style="background-color: purple;" [ngStyle]="myStyles"></div>
+
+<input type="text"/>
+
+
+
+

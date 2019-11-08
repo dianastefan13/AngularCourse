@@ -1,0 +1,9 @@
+<p>parent-component works!</p>
+<app-child-component [(param1)]="parentCompoenentProperty" param2="{{secondParam}}" [param3]="'myThirdParam'" 
+(iDidIt)="iDidItEvent($event)"
+[iHaveAccessors]="propertyFromAccessor"></app-child-component>
+<div>{{parentCompoenentProperty}}</div>
+
+
+<button (click)="doSomething()">My button from parrent</button>
+
