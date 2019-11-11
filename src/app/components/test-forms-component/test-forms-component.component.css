@@ -1,0 +1,15 @@
+.hidden {
+    display: none;
+}
+
+.ng-valid[required]{
+    border-left: 5px solid green;
+}
+
+input.ng-dirty.ng-invalid{
+    border-left: 5px solid red;
+}
+
+form.ng-dirty{
+    border-left:  5px solid orange;
+}

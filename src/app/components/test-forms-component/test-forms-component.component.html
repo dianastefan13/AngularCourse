@@ -1,0 +1,25 @@
+<form #myForm="ngForm" (ngSubmit)="submitMyForm()">
+    <label for="name">Hero Name</label>
+    <input #myNameInput="ngModel" 
+            name="name" 
+            [(ngModel)]="hero.name" 
+            minlength="2" maxlength="100" 
+            pattern="[a-zA-z]+"
+            startsWith="abc"/>
+    <div *ngIf="myNameInput.errors && myNameInput.touched" class="alert">
+        <div [class.hidden]="!myNameInput.errors.minlength">Length must be greater than 2 char</div>
+        <div [class.hidden]="!myNameInput.errors.maxlength">Length must be less than 100 char</div>
+        <div [class.hidden]="!myNameInput.errors.pattern">{{myNameInput.errors.pattern | json}}</div>
+    </div>
+
+    <label for="id">Hero Id</label>
+    <input #myIdInput="ngModel" name="id" [(ngModel)]="hero.id" required/>
+    <div *ngIf="myNameInput.errors && myNameInput.touched" class="alert">
+            Id is required
+        </div>
+  
+
+    <button type="submit" >Submit</button>
+</form>
+
+{{hero | json}}
