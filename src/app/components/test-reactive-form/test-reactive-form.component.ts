@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from 'src/app/model/hero';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { HeroService } from 'src/app/services/hero.service';
+import { of } from 'rxjs'
 
 @Component({
   selector: 'app-test-reactive-form',
@@ -27,10 +28,14 @@ export class TestReactiveFormComponent implements OnInit {
       {
         validators: [
           Validators.required,
-          Validators.minLength(3)
+          Validators.minLength(3),
+          this.rejectNameValidator('angular')
         ],
       }
       ], id: [this.hero.id]
+    }, {
+      validators : [this.crossFieldValidator()],
+      //asyncValidators : [this.httpAsyncValidator.bind(this)]
     })
   }
 
@@ -47,6 +52,37 @@ export class TestReactiveFormComponent implements OnInit {
 
 
     }
+  }
+
+  rejectNameValidator(nameRejected: string){
+    return(control: AbstractControl) => {
+        const name = control.value;
+        let containsRejected = false;
+        if(name.indexOf(nameRejected) >= 0){
+          containsRejected = true;
+        }
+        return containsRejected ? {"rejectedName" : {name}} : null;
+
+    }
+  }
+
+  crossFieldValidator() {
+    return (control: FormGroup) => {
+      const name = control.get("name").value
+      const id = control.get("id").value
+      return name == id ? {"crossFields" : {"error" : "Your inputs must be different"}} : null;
+
+    }
+  }
+
+  httpAsyncValidator(control: FormGroup){
+    let hero = new Hero();
+    hero.name = control.get('name').value
+    hero.id = control.get('id').value
+    if(hero.name == 'HeroTest'){
+      return of({"Hero name is wrong" : hero.name})
+    }
+    return null
   }
 
 }

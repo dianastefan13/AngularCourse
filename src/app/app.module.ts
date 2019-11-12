@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Params} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
 
 import { AppComponent } from './app.component';
 import { MyComponent } from './components/my-component/my-component.component';
@@ -22,6 +25,18 @@ import { MyPipePipe } from './pipes/my-pipe.pipe';
 import { TestFormsComponentComponent } from './components/test-forms-component/test-forms-component.component';
 import { CustomValidatorDirective } from './directives/custom-validator.directive';
 import { TestReactiveFormComponent } from './components/test-reactive-form/test-reactive-form.component';
+import { MissingTranslationHandler, MissingTranslationHandlerParams, TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TestHttpServiceComponent } from './components/test-http-service/test-http-service.component';
+
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+export class MyMissingTranslationHandler implements MissingTranslationHandler{
+  handle(params: MissingTranslationHandlerParams){
+    return params.key + '__IS NOT SET FOR' + params.translateService.currentLang
+  }
+}
 
 @NgModule({
   declarations: [
@@ -41,10 +56,21 @@ import { TestReactiveFormComponent } from './components/test-reactive-form/test-
     MyPipePipe,
     TestFormsComponentComponent,
     CustomValidatorDirective,
-    TestReactiveFormComponent
+    TestReactiveFormComponent,
+    TestHttpServiceComponent
     
   ],
   imports: [
+    TranslateModule.forRoot({
+      //missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MyMissingTranslationHandler},
+      useDefaultLang: false,
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,0 +1,15 @@
+<div *ngFor="let hero of heroes">{{hero.name}}</div>
+
+<button (click)="createHero()">Create a hero</button>
+
+<div>
+
+<form *ngIf="shouldDisplayMyForm" #myForm="ngForm" (ngSubmit)="submitMyForm()">
+    <label for="name">Hero name</label>
+    <input #myNameInput="ngModel" type="text" name="name" ngModel/>
+    <label for="id">Hero id</label>
+    <input #myIdInput="ngModel" type="text" name="id" ngModel/>
+
+    <button type="submit" >Submit</button>
+    
+</form>
