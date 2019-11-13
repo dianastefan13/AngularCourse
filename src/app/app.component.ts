@@ -13,8 +13,8 @@ export class AppComponent {
   constructor(private playWithTsService: PlayWithTsService, 
     private translateService: TranslateService,
     private httpService: HttpServiceService) {
-    this.translateService.setDefaultLang('en');
-    this.translateService.use('ro');
+    // this.translateService.setDefaultLang('en');
+    // this.translateService.use('ro');
     // this.httpService.getHeroes();
     // this.httpService.getHeroById(1);
     // this.httpService.createHero({"name" : "Created Hero", "id" : 10});

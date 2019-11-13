@@ -27,6 +27,9 @@ import { CustomValidatorDirective } from './directives/custom-validator.directiv
 import { TestReactiveFormComponent } from './components/test-reactive-form/test-reactive-form.component';
 import { MissingTranslationHandler, MissingTranslationHandlerParams, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TestHttpServiceComponent } from './components/test-http-service/test-http-service.component';
+import { RxTestComponent } from './components/rx-test/rx-test.component';
+import { TestSubject1Component } from './components/test-subject1/test-subject1.component';
+import { TestSubject2Component } from './components/test-subject2/test-subject2.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -57,7 +60,10 @@ export class MyMissingTranslationHandler implements MissingTranslationHandler{
     TestFormsComponentComponent,
     CustomValidatorDirective,
     TestReactiveFormComponent,
-    TestHttpServiceComponent
+    TestHttpServiceComponent,
+    RxTestComponent,
+    TestSubject1Component,
+    TestSubject2Component
     
   ],
   imports: [
